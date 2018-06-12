@@ -10,12 +10,13 @@ import android.util.Log;
 public class InstanceFctrory<T> {
     private InstanceFctrory(){};
     private String tag ="LruCacheSample";
+    private int MAX_SIZE=8;
     volatile LruCache<Class<T>,Object> map=new LruCacheSample();
 
     class LruCacheSample extends LruCache<Class<T>, Object> {
 
         LruCacheSample() {
-            super(8);
+            super(MAX_SIZE);
         }
 
         @Override
