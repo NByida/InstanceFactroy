@@ -1,4 +1,5 @@
-package com.example2.lrudemo.lrudemo.Signle;
+package com.example2.lrudemo.singletonfactory.Signle;
+import android.support.annotation.NonNull;
 import android.support.v4.util.LruCache;
 import android.util.Log;
 
@@ -12,6 +13,16 @@ public class InstanceFctrory<T> {
     private String tag ="LruCacheSample";
     private int MAX_SIZE=8;
     volatile LruCache<Class<T>,Object> map=new LruCacheSample();
+
+    public int setLruCacheSize(@NonNull int size){
+        if(size<=0) {
+            Log.i(tag,"LruCacheSize inviled!");
+            return -1;
+        };
+        this.MAX_SIZE=size;
+        map.resize(size);
+        return size;
+    }
 
     class LruCacheSample extends LruCache<Class<T>, Object> {
 
